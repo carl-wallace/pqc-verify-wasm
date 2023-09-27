@@ -1,0 +1,45 @@
+[package]
+name = "pqc-verify-wasm"
+version = "0.1.0"
+description = """
+Utility to verify zip files containing certificates from the the IETF PQC hackathon repo
+"""
+authors = [""]
+license = "Apache-2.0 OR MIT"
+repository = "https://github.com/carl-wallace/pqc-verify-wasm"
+categories = ["cryptography", "pki", "no-std"]
+keywords = ["crypto", "x509", "pqc"]
+readme = "README.md"
+edition = "2021"
+rust-version = "1.65"
+
+# See more keys and their definitions at https://doc.rust-lang.org/cargo/reference/manifest.html
+
+[dependencies]
+certval = { git = "https://github.com/carl-wallace/rust-pki/", default-features = false, features = ["pqc_wasm"], branch = "pittui"}
+pem-rfc7468 = { version="0.7.0", features = ["alloc"]}
+getrandom = { version = "0.2.10", features = ["js"] }
+
+log = {version = "0.4.19"}
+log4rs = {version = "1.2.0", default-features = false}
+
+dioxus = {version = "0.4.0"}
+dioxus-web = {version = "0.4.0"}
+
+console_error_panic_hook = { version = "0.1.7", optional = true }
+
+wasm-bindgen = "0.2.87"
+wasm-bindgen-futures = "0.4.37"
+js-sys = "0.3.64"
+web-sys = {version = "0.3.64", features = ["console"]}
+
+wasm-logger = "0.2.0"
+
+rayon = "1.7.0"
+
+[dev-dependencies]
+wasm-bindgen-test = "0.3.37"
+
+[package.metadata.docs.rs]
+all-features = true
+rustdoc-args = ["--cfg", "docsrs"]
